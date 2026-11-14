@@ -1,8 +1,1 @@
-
-.godot/shader_cache/
-.godot/scene_groups_cache.cfg
-.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.md5
-.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex
-.godot/global_script_class_cache.cfg
-.godot/uid_cache.bin
-.godot/editor/
+/.godot/

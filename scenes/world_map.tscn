@@ -1,17 +1,17 @@
-[gd_scene format=3 uid="uid://r45txnqo6j8m"]
+[gd_scene format=3 uid="uid://bcc0epdmljxij"]
 
-[ext_resource type="Script" uid="uid://1m0ry25xiiox" path="res://scenes/world_map_generate.gd" id="1_u82pb"]
+[ext_resource type="Script" uid="uid://1m0ry25xiiox" path="res://scripts/world.gd" id="1_u82pb"]
 [ext_resource type="Script" uid="uid://bpoc40q5e2vf3" path="res://scripts/player.gd" id="3_pls23"]
 [ext_resource type="Script" uid="uid://d3310jpvmp4lj" path="res://scripts/stats_hud.gd" id="3_stats"]
 
 [node name="World" type="Node2D" unique_id=843234056]
 script = ExtResource("1_u82pb")
+metadata/support = 100
+metadata/money = 0
 
 [node name="player" type="CharacterBody2D" parent="." unique_id=1351970569]
 process_mode = 3
 script = ExtResource("3_pls23")
-metadata/money = 0
-metadata/support = 100
 
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=1863578224]
 

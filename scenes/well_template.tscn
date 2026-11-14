@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://34ovja2nt2bk"]
+
+[ext_resource type="Texture2D" uid="uid://c1gs7hnjlxd4b" path="res://icon.svg" id="1_3i221"]
+
+[node name="well" type="Node2D" unique_id=2044072898]
+
+[node name="well_texture" type="Sprite2D" parent="." unique_id=285521187]
+texture = ExtResource("1_3i221")
+flip_v = true

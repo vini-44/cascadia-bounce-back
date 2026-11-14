@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cb0e0jaculb7e"]
+
+[ext_resource type="Texture2D" uid="uid://c1gs7hnjlxd4b" path="res://icon.svg" id="1_cua4b"]
+[ext_resource type="Script" uid="uid://bs5b5oi6k4g5w" path="res://scripts/house.gd" id="2_rj35m"]
+
+[node name="house" type="Node2D" unique_id=902785848]
+
+[node name="house_texture" type="Sprite2D" parent="." unique_id=1058573648]
+texture = ExtResource("1_cua4b")
+script = ExtResource("2_rj35m")

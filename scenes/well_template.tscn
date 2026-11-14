@@ -2,8 +2,18 @@
 
 [ext_resource type="Texture2D" uid="uid://c1gs7hnjlxd4b" path="res://icon.svg" id="1_3i221"]
 
-[node name="well" type="Node2D" unique_id=2044072898]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ipcuq"]
+radius = 64.0
+
+[node name="well" type="Node2D" unique_id=2044072898 groups=["well"]]
+metadata/is_well = true
 
 [node name="well_texture" type="Sprite2D" parent="." unique_id=285521187]
 texture = ExtResource("1_3i221")
 flip_v = true
+
+[node name="well_area" type="Area2D" parent="." unique_id=1000435522 groups=["well"]]
+
+[node name="well_range" type="CollisionShape2D" parent="well_area" unique_id=234207692]
+scale = Vector2(10, 10)
+shape = SubResource("CircleShape2D_ipcuq")

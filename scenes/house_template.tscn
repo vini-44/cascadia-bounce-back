@@ -3,12 +3,29 @@
 [ext_resource type="Texture2D" uid="uid://c1gs7hnjlxd4b" path="res://icon.svg" id="1_cua4b"]
 [ext_resource type="Script" uid="uid://bs5b5oi6k4g5w" path="res://scripts/house.gd" id="2_rj35m"]
 
-[node name="house" type="Node2D" unique_id=902785848]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ipcuq"]
+
+[node name="house" type="Node2D" unique_id=902785848 groups=["house"]]
 metadata/damage_state = 0
 metadata/water = false
-metadata/electric = false
+metadata/power = false
 
 [node name="house_texture" type="Sprite2D" parent="." unique_id=1058573648]
-position = Vector2(65, 59.999996)
 texture = ExtResource("1_cua4b")
 script = ExtResource("2_rj35m")
+
+[node name="house_area" type="Area2D" parent="." unique_id=1114805577 groups=["house"]]
+
+[node name="house_range" type="CollisionShape2D" parent="house_area" unique_id=55218542]
+scale = Vector2(6.16, 6.16)
+shape = SubResource("RectangleShape2D_ipcuq")
+
+[node name="water_icon" type="Sprite2D" parent="." unique_id=1553103205]
+position = Vector2(-26, 2)
+scale = Vector2(0.3671875, 0.4609375)
+texture = ExtResource("1_cua4b")
+
+[node name="power_icon" type="Sprite2D" parent="." unique_id=460406135]
+position = Vector2(31.999998, -4.7683716e-07)
+scale = Vector2(0.46231076, 0.3634338)
+texture = ExtResource("1_cua4b")

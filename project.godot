@@ -24,6 +24,11 @@ buses/default_bus_layout="uid://bg63tynqfmrws"
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[global_group]
+
+house=""
+well=""
+
 [input]
 
 ui_left={

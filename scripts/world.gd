@@ -4,7 +4,8 @@ var tick = 0;
 var day = 0
 
 var occupied_positions: Dictionary = {}
-var house_list: Array = [Node2D]
+
+var house_list: Array[Node2D]
 
 const house_template = preload("res://scenes/house_template.tscn")
 var rng = RandomNumberGenerator.new()
@@ -18,7 +19,8 @@ func spawn_houses(max_house:int, size: int, grid_size:int) -> void:
 		var grid_pos = Vector2i(rng.randi_range(-size,size),rng.randi_range(-size,size))
 		
 		if occupied_positions.has(grid_pos):
-			print("house deleted")
+			#print("house deleted")
+			pass
 			
 		else:
 			var house = house_template.instantiate()
@@ -28,7 +30,7 @@ func spawn_houses(max_house:int, size: int, grid_size:int) -> void:
 			
 			add_child(house)
 			house_list.append(house)
-			print("house made")
+			#print("house made")
 	
 	#print(house_list)
 
@@ -40,16 +42,43 @@ func _process(delta: float) -> void:
 	else:
 		tick += 1
 		#print(tick)
-		
+
+func _physics_process(delta: float) -> void: 
+	for current_house in house_list:
+		house_update(current_house);
+		#print(current_house)
+
 func day_event() -> void:
 	print("day:")
 	print(day)
 	
+	
 	set_meta("money", get_meta("money") + 50)
 	set_meta("support", get_meta("support") - 1)
 	
-	print("Money:")
-	print(get_meta("money"))
+	#print("Money:")
+	#print(get_meta("money"))
 	
 	if (get_meta("support") == 0):
 		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
+func house_update(house: Node2D):
+	var area = house.get_node("house_area") as Area2D	
+	var water_icon = house.get_node("water_icon") as Sprite2D
+	var power_icon = house.get_node("power_icon") as Sprite2D
+	
+	for body in area.get_overlapping_areas():
+		
+		if body.is_in_group("well"):
+			house.set_meta("water", true)
+			water_icon.hide()
+		else:
+			house.set_meta("water", false)
+			water_icon.show()
+			
+		if body.is_in_group("power"):
+			house.set_meta("power", true)
+			power_icon.hide()
+		else:
+			house.set_meta("water", false)
+			power_icon.show()

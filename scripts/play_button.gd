@@ -8,3 +8,4 @@ func _ready() -> void:
 
 func _pressed():
 	print("play!")
+	get_tree().change_scene_to_file("res://scenes/world_map.tscn")

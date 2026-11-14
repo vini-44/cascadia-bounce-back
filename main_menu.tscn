@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://baqgp02e6lx58"]
 
-[ext_resource type="Script" uid="uid://b83pyq8nf5eu6" path="res://cascadia-bounce-back/button_1.gd" id="1_7c7m4"]
+[ext_resource type="Script" uid="uid://b83pyq8nf5eu6" path="res://button_1.gd" id="1_7c7m4"]
+[ext_resource type="Script" uid="uid://dwj4md5dqv2e4" path="res://play_button.gd" id="2_7vrkn"]
+[ext_resource type="Script" uid="uid://cdyltw8njs17j" path="res://button_load.gd" id="3_fu7sn"]
 
 [node name="Control" type="Control" unique_id=913363199]
 layout_mode = 3
@@ -12,9 +14,48 @@ grow_vertical = 2
 
 [node name="Button" type="Button" parent="." unique_id=1806677759]
 layout_mode = 0
-offset_left = 365.0
-offset_top = 280.0
-offset_right = 633.0
-offset_bottom = 431.0
+offset_left = 1007.0
+offset_top = 490.0
+offset_right = 1275.0
+offset_bottom = 641.0
 text = "Button"
 script = ExtResource("1_7c7m4")
+
+[node name="ButtonPlay" type="Button" parent="." unique_id=523147670]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 195.0
+offset_right = 302.0
+offset_bottom = 295.0
+theme_override_colors/font_color = Color(0.34452695, 0.5674738, 0.5632656, 1)
+theme_override_font_sizes/font_size = 50
+text = "PLAY"
+script = ExtResource("2_7vrkn")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1566745189]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 1.0
+offset_right = 335.0
+offset_bottom = 150.0
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/bold_font_size = 50
+theme_override_font_sizes/bold_italics_font_size = 50
+theme_override_font_sizes/italics_font_size = 50
+theme_override_font_sizes/mono_font_size = 50
+text = "Cascadia"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonLoad" type="Button" parent="." unique_id=1430242125]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 314.0
+offset_right = 298.0
+offset_bottom = 385.0
+theme_override_colors/font_color = Color(0.34452695, 0.5674738, 0.5632656, 1)
+theme_override_font_sizes/font_size = 50
+script = ExtResource("3_fu7sn")
+
+[node name="SaveMenu" type="Popup" parent="." unique_id=233698389]
+initial_position = 1

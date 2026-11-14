@@ -52,15 +52,37 @@ func day_event() -> void:
 	print("day:")
 	print(day)
 	
+	var bonus_money = 0
+	for current_house in house_list:
+		if (current_house.get_meta("power") == true):
+			bonus_money += 0.25
+		if (current_house.get_meta("water") == true):
+			bonus_money += 0.25
+			
+	set_meta("money", get_meta("money") + 20 + bonus_money)
 	
-	set_meta("money", get_meta("money") + 50)
-	set_meta("support", get_meta("support") - 1)
+	support_calc()
 	
 	#print("Money:")
 	#print(get_meta("money"))
 	
 	if (get_meta("support") == 0):
 		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
+func support_calc():
+	var total_support = float(0)
+	var house_count = float(house_list.size())
+	
+	for current_house in house_list:
+		if (current_house.get_meta("power") == true):
+			total_support += 1
+		if (current_house.get_meta("water") == true):
+			total_support += 1
+	set_meta("support", get_meta("support") - 1.5 + total_support/house_count)
+	#print(float(total_support/house_count))
+	#print(total_support)
+	#print(house_count)
+	#print(get_meta("support"))
 
 func house_update(house: Node2D):
 	var area = house.get_node("house_area") as Area2D	
@@ -72,13 +94,11 @@ func house_update(house: Node2D):
 		if body.is_in_group("well"):
 			house.set_meta("water", true)
 			water_icon.hide()
-		else:
-			house.set_meta("water", false)
-			water_icon.show()
-			
-		if body.is_in_group("power"):
+		if body.is_in_group("power_source"):
 			house.set_meta("power", true)
 			power_icon.hide()
-		else:
-			house.set_meta("water", false)
-			power_icon.show()
+	if(!area.has_overlapping_areas()):
+		house.set_meta("power", false)
+		power_icon.show()
+		house.set_meta("water", false)
+		water_icon.show()

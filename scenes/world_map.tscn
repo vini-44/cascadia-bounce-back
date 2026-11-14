@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://1m0ry25xiiox" path="res://scenes/world_map_generate.gd" id="1_u82pb"]
 [ext_resource type="Script" uid="uid://bpoc40q5e2vf3" path="res://scripts/player.gd" id="3_pls23"]
-[ext_resource type="Script" path="res://scripts/stats_hud.gd" id="3_stats"]
+[ext_resource type="Script" uid="uid://d3310jpvmp4lj" path="res://scripts/stats_hud.gd" id="3_stats"]
 
 [node name="World" type="Node2D" unique_id=843234056]
 script = ExtResource("1_u82pb")
@@ -13,18 +13,18 @@ script = ExtResource("3_pls23")
 metadata/money = 0
 metadata/support = 100
 
-[node name="camera2D" type="Camera2D" parent="player" unique_id=1863578224]
+[node name="Camera2D" type="Camera2D" parent="player" unique_id=1863578224]
 
-[node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("player")]
+[node name="HUD" type="CanvasLayer" parent="." unique_id=365164596 node_paths=PackedStringArray("player")]
 script = ExtResource("3_stats")
 player = NodePath("../player")
 
-[node name="MoneyPanel" type="PanelContainer" parent="HUD"]
+[node name="MoneyPanel" type="PanelContainer" parent="HUD" unique_id=1429605165]
 offset_left = 16.0
 offset_top = 16.0
 mouse_filter = 2
 
-[node name="Padding" type="MarginContainer" parent="HUD/MoneyPanel"]
+[node name="Padding" type="MarginContainer" parent="HUD/MoneyPanel" unique_id=1637758547]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 12
@@ -32,12 +32,12 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 8
 
-[node name="MoneyLabel" type="Label" parent="HUD/MoneyPanel/Padding"]
+[node name="MoneyLabel" type="Label" parent="HUD/MoneyPanel/Padding" unique_id=1647576176]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Money: $0"
 
-[node name="SupportPanel" type="PanelContainer" parent="HUD"]
+[node name="SupportPanel" type="PanelContainer" parent="HUD" unique_id=1764448234]
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
@@ -51,7 +51,7 @@ grow_horizontal = 0
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Padding" type="MarginContainer" parent="HUD/SupportPanel"]
+[node name="Padding" type="MarginContainer" parent="HUD/SupportPanel" unique_id=1202397610]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 12
@@ -59,17 +59,17 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 8
 
-[node name="Stats" type="VBoxContainer" parent="HUD/SupportPanel/Padding"]
+[node name="Stats" type="VBoxContainer" parent="HUD/SupportPanel/Padding" unique_id=2071860984]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 4
 
-[node name="SupportLabel" type="Label" parent="HUD/SupportPanel/Padding/Stats"]
+[node name="SupportLabel" type="Label" parent="HUD/SupportPanel/Padding/Stats" unique_id=2086584325]
 layout_mode = 2
 text = "Support"
 horizontal_alignment = 1
 
-[node name="SupportBar" type="ProgressBar" parent="HUD/SupportPanel/Padding/Stats"]
+[node name="SupportBar" type="ProgressBar" parent="HUD/SupportPanel/Padding/Stats" unique_id=337172317]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(24, 96)
 layout_mode = 2
@@ -80,7 +80,7 @@ value = 100.0
 fill_mode = 3
 show_percentage = false
 
-[node name="SupportValue" type="Label" parent="HUD/SupportPanel/Padding/Stats"]
+[node name="SupportValue" type="Label" parent="HUD/SupportPanel/Padding/Stats" unique_id=847710344]
 unique_name_in_owner = true
 layout_mode = 2
 text = "100%"

@@ -8,6 +8,7 @@ func _physics_process(delta):
 	velocity = input_direction * 700
 	move_and_slide()
 	
+	
 func _process(delta: float) -> void:
 	if (tick == 120):
 		day_event()

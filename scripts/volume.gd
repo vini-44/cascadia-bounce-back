@@ -10,6 +10,6 @@ func _ready() -> void:
 
 	
 @export
-var bus_name: String
+var bus_name:= "Master"
 
 var bus_index: int

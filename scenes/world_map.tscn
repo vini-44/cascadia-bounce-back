@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://34ovja2nt2bk" path="res://scenes/well_template.tscn" id="4_pls23"]
 [ext_resource type="Script" uid="uid://c2shftykxch4c" path="res://scenes/build_well.gd" id="4_sh0tg"]
 [ext_resource type="PackedScene" uid="uid://c6sgyp5ewcqge" path="res://scenes/generator_template.tscn" id="5_qj3iy"]
+[ext_resource type="PackedScene" uid="uid://dhtwtqc6f8h6q" path="res://scenes/grass_template.tscn" id="7_27p3u"]
 
 [node name="World" type="Node2D" unique_id=843234056]
 script = ExtResource("1_u82pb")
@@ -190,6 +191,9 @@ position = Vector2(3191, 266)
 
 [node name="generator" parent="." unique_id=1917306848 instance=ExtResource("5_qj3iy")]
 position = Vector2(3188, 1006)
+
+[node name="grass" parent="." unique_id=2048645258 instance=ExtResource("7_27p3u")]
+position = Vector2(1490, 514)
 
 [connection signal="pressed" from="HUD/BuildPanel/Padding/Details/BuildWell" to="HUD/BuildPanel/Padding/Details/BuildWell" method="toggle_placement"]
 [connection signal="pressed" from="HUD/ResultScreen/ResultPanel/Padding/Result/Retry" to="." method="restart_round"]

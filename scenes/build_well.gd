@@ -71,9 +71,9 @@ func _try_build_well(at: Vector2) -> void:
 	if newly_served.is_empty() or owner.get_meta("money") < WELL_COST:
 		return
 	var well := WELL_TEMPLATE.instantiate() as Node2D
-	add_child(well)
+	owner.add_child(well)
 	well.global_position = at
-	set_meta("money", owner.get_meta("money") - WELL_COST)
+	owner.set_meta("money", owner.get_meta("money") - WELL_COST)
 	_connect_houses(newly_served)
 	connected_homes += newly_served.size()
 	hud.show_progress(connected_homes, WATER_GOAL)

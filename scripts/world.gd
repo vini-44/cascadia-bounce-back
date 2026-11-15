@@ -49,7 +49,8 @@ func spawn_houses(max_house:int, size: int, grid_size:int) -> void:
 			add_child(house)
 			house_list.append(house)
 			#print("house made")
-	
+	%BuildWell.WATER_GOAL = house_list.size()
+	%BuildGen.WATER_GOAL = house_list.size()
 	#print(house_list)
 
 func _process(delta: float) -> void:

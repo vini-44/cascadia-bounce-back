@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://d3310jpvmp4lj" path="res://scripts/stats_hud.gd" id="3_stats"]
 [ext_resource type="PackedScene" uid="uid://34ovja2nt2bk" path="res://scenes/well_template.tscn" id="4_pls23"]
 [ext_resource type="Script" uid="uid://c2shftykxch4c" path="res://scenes/build_well.gd" id="4_sh0tg"]
+[ext_resource type="Script" uid="uid://br2wn3upokai" path="res://scenes/build_gen.gd" id="5_gqm84"]
 [ext_resource type="PackedScene" uid="uid://c6sgyp5ewcqge" path="res://scenes/generator_template.tscn" id="5_qj3iy"]
 [ext_resource type="PackedScene" uid="uid://dhtwtqc6f8h6q" path="res://scenes/grass_template.tscn" id="7_27p3u"]
 
@@ -123,6 +124,7 @@ layout_mode = 2
 text = "Homes with water: 0 / 10"
 
 [node name="PowerProgress" type="Label" parent="HUD/BuildPanel/Padding/Details" unique_id=1618452479]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Homes with power 0/10"
 
@@ -134,9 +136,11 @@ text = "Place a well, $100"
 script = ExtResource("4_sh0tg")
 
 [node name="BuildGen" type="Button" parent="HUD/BuildPanel/Padding/Details" unique_id=1199396614]
+unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "B: Place a well"
 text = "Place a generator, $250"
+script = ExtResource("5_gqm84")
 
 [node name="PreviewDetails" type="VBoxContainer" parent="HUD/BuildPanel/Padding/Details" unique_id=29191601]
 unique_name_in_owner = true
@@ -189,11 +193,12 @@ layout_mode = 2
 [node name="well" parent="." unique_id=2044072898 instance=ExtResource("4_pls23")]
 position = Vector2(3191, 266)
 
-[node name="generator" parent="." unique_id=1917306848 instance=ExtResource("5_qj3iy")]
+[node name="gen" parent="." unique_id=1917306848 instance=ExtResource("5_qj3iy")]
 position = Vector2(3188, 1006)
 
 [node name="grass" parent="." unique_id=2048645258 instance=ExtResource("7_27p3u")]
 position = Vector2(1490, 514)
 
 [connection signal="pressed" from="HUD/BuildPanel/Padding/Details/BuildWell" to="HUD/BuildPanel/Padding/Details/BuildWell" method="toggle_placement"]
+[connection signal="pressed" from="HUD/BuildPanel/Padding/Details/BuildGen" to="HUD/BuildPanel/Padding/Details/BuildGen" method="toggle_placement"]
 [connection signal="pressed" from="HUD/ResultScreen/ResultPanel/Padding/Result/Retry" to="." method="restart_round"]

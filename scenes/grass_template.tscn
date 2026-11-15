@@ -17,9 +17,11 @@ scale = Vector2(1.52, 1.52)
 shape = SubResource("RectangleShape2D_1edri")
 
 [node name="dirt" type="Sprite2D" parent="." unique_id=464901397]
+visible = false
 scale = Vector2(0.049999997, 0.049999997)
 texture = SubResource("CompressedTexture2D_1ibji")
 
 [node name="grass" type="Sprite2D" parent="." unique_id=992404672]
+visible = false
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("1_spwdn")

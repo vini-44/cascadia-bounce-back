@@ -8,7 +8,6 @@ var day = 0
 var occupied_positions: Dictionary = {}
 
 var house_list: Array[Node2D]
-var grass_list: Array[Node2D]
 
 const grass_template = preload("res://scenes/grass_template.tscn")
 const house_template = preload("res://scenes/house_template.tscn")
@@ -30,8 +29,6 @@ func spawn_houses(max_house:int, size: int, grid_size:int) -> void:
 			grass.global_position = grass_pos
 			
 			add_child(grass)
-			grass_list.append(grass)
-			grass.get_node("grass").hide()
 			
 	for house_number in max_house:
 		var grid_pos = Vector2i(rng.randi_range(-size,size),rng.randi_range(-size,size))
@@ -116,18 +113,6 @@ func house_update(house: Node2D):
 		house.set_meta("power", has_power)
 		power_icon.visible = not has_power
 		
-func grass_update():
-	for grass in grass_list:
-		var area = grass.get_node("area") as Area2D	
-		var grass_tex = grass.get_node("grass") as Sprite2D
-		var has_water := area.get_overlapping_areas().any(
-			func(other: Area2D) -> bool: return other.is_in_group("power_source")
-		)
-		#print(has_water)
-		if has_water != grass.get_meta("has_water"):
-			grass.set_meta("water", has_water)
-			grass_tex.visible = not has_water
-
 func _finish_round(won: bool) -> void:
 	round_finished = true
 	%BuildWell._cancel_placement()

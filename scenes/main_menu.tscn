@@ -65,7 +65,21 @@ oversampling_override = 1.0
 title = "Settings"
 initial_position = 1
 size = Vector2i(1000, 500)
+visible = true
 script = ExtResource("4_jix8l")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ButtonSettings/Settings" unique_id=1016943580]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 996.0
+offset_bottom = 496.0
+scale = Vector2(0.80902565, 2.23546)
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 30
+theme_override_font_sizes/bold_italics_font_size = 30
+theme_override_font_sizes/italics_font_size = 30
+theme_override_font_sizes/mono_font_size = 30
+text = "Press WASD to move, Q to zoom in, and E to zoom out."
 
 [node name="ButtonQuit" type="Button" parent="." unique_id=1697448990]
 layout_mode = 0

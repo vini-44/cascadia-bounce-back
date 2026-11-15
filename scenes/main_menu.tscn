@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://oe0qmt8fd1co"]
 
+[ext_resource type="Theme" uid="uid://c8h5h66ur7ug1" path="res://main_menu_theme.tres" id="1_8ln24"]
 [ext_resource type="Script" uid="uid://dwj4md5dqv2e4" path="res://scripts/play_button.gd" id="2_7vrkn"]
 [ext_resource type="Script" uid="uid://b2up8iy8nw8nq" path="res://scripts/settings_button.gd" id="3_fu7sn"]
 [ext_resource type="Script" uid="uid://b6xabv8m1f4ri" path="res://scripts/quit_button.gd" id="4_glbon"]
@@ -12,6 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_8ln24")
 
 [node name="ButtonPlay" type="Button" parent="." unique_id=523147670]
 layout_mode = 0

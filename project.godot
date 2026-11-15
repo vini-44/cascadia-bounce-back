@@ -30,6 +30,10 @@ house=""
 well=""
 power_source=""
 
+[gui]
+
+theme/custom_font="uid://y3ha30pg0caw"
+
 [input]
 
 ui_left={

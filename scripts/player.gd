@@ -13,7 +13,7 @@ func zoom():
 	if Input.is_action_pressed("Zoom in"):
 		$Camera2D.zoom.x *= 1 + zoom_factor
 		$Camera2D.zoom.y *= 1 + zoom_factor
-	if Input.is_action_pressed("Zoom out") and $Camera2D.zoom.x > 0.1 and $Camera2D.zoom.y > 0.1:
+	if Input.is_action_pressed("Zoom out") and $Camera2D.zoom.x > 0.2 and $Camera2D.zoom.y > 0.2:
 		$Camera2D.zoom.x *= 1 - zoom_factor
 		$Camera2D.zoom.y *= 1 - zoom_factor
 	

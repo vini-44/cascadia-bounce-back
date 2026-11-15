@@ -18,7 +18,7 @@ var rng = RandomNumberGenerator.new()
 @onready var hud: StatsHUD = $HUD
 
 func _ready():
-	spawn_houses(100,10,125)
+	spawn_houses(150,20,140)
 	%BuildWell.dry_houses.assign(house_list)
 	%BuildGen.dry_houses.assign(house_list)
 	

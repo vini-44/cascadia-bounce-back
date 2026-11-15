@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://oe0qmt8fd1co"]
+
+[ext_resource type="Theme" uid="uid://c8h5h66ur7ug1" path="res://main_menu_theme.tres" id="1_8ln24"]
+[ext_resource type="Script" uid="uid://dwj4md5dqv2e4" path="res://scripts/play_button.gd" id="2_7vrkn"]
+[ext_resource type="Texture2D" uid="uid://b5wsxjjt6rsj1" path="res://assets/sky_title.png" id="2_rtw2f"]
+[ext_resource type="Script" uid="uid://b2up8iy8nw8nq" path="res://scripts/settings_button.gd" id="3_fu7sn"]
+[ext_resource type="Script" uid="uid://b6xabv8m1f4ri" path="res://scripts/quit_button.gd" id="4_glbon"]
+[ext_resource type="Script" uid="uid://btcr2xh7id48x" path="res://scripts/settings_panel.gd" id="4_jix8l"]
+
+[node name="Control" type="Control" unique_id=913363199]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_8ln24")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1498955939]
+z_index = -4096
+position = Vector2(578, 328)
+scale = Vector2(0.32988507, 0.30092594)
+texture = ExtResource("2_rtw2f")
+
+[node name="ButtonPlay" type="Button" parent="." unique_id=523147670]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 195.0
+offset_right = 372.0
+offset_bottom = 295.0
+theme_override_colors/font_color = Color(0.34452695, 0.5674738, 0.5632656, 1)
+theme_override_font_sizes/font_size = 50
+text = "PLAY"
+script = ExtResource("2_7vrkn")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1566745189]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 33.0
+offset_right = 384.0
+offset_bottom = 182.0
+theme_override_colors/default_color = Color(0.22174624, 0.60875034, 0.42070198, 1)
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/bold_font_size = 50
+theme_override_font_sizes/bold_italics_font_size = 50
+theme_override_font_sizes/italics_font_size = 50
+theme_override_font_sizes/mono_font_size = 50
+text = "Cascadia"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonSettings" type="Button" parent="." unique_id=1056703984]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 307.0
+offset_right = 372.0
+offset_bottom = 403.0
+theme_override_colors/font_color = Color(0.34452695, 0.5674738, 0.5632656, 1)
+theme_override_font_sizes/font_size = 50
+text = "SETTINGS"
+script = ExtResource("3_fu7sn")
+
+[node name="Settings" type="PopupPanel" parent="ButtonSettings" unique_id=1493214942]
+oversampling_override = 1.0
+title = "Settings"
+initial_position = 1
+size = Vector2i(1000, 500)
+script = ExtResource("4_jix8l")
+
+[node name="ButtonQuit" type="Button" parent="." unique_id=1697448990]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 415.0
+offset_right = 372.0
+offset_bottom = 511.0
+theme_override_colors/font_color = Color(0.34452695, 0.5674738, 0.5632656, 1)
+theme_override_font_sizes/font_size = 50
+text = "QUIT"
+script = ExtResource("4_glbon")

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dhtwtqc6f8h6q"]
+
+[ext_resource type="Texture2D" uid="uid://cfv1gf6he7o6s" path="res://assets/better_grass.png" id="1_spwdn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1edri"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1ibji"]
+load_path = "res://.godot/imported/dirt.png-0a1ee02e0310eb6b032db25fe6920ea9.ctex"
+
+[node name="grass" type="Node2D" unique_id=2048645258]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1703310941]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=848868826]
+scale = Vector2(1.52, 1.52)
+shape = SubResource("RectangleShape2D_1edri")
+
+[node name="Dirt" type="Sprite2D" parent="." unique_id=464901397]
+scale = Vector2(0.02, 0.02)
+texture = SubResource("CompressedTexture2D_1ibji")
+
+[node name="Grass" type="Sprite2D" parent="." unique_id=992404672]
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("1_spwdn")

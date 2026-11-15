@@ -1,0 +1,199 @@
+[gd_scene format=3 uid="uid://bcc0epdmljxij"]
+
+[ext_resource type="Script" uid="uid://1m0ry25xiiox" path="res://scripts/world.gd" id="1_u82pb"]
+[ext_resource type="Script" uid="uid://bpoc40q5e2vf3" path="res://scripts/player.gd" id="3_pls23"]
+[ext_resource type="Script" uid="uid://d3310jpvmp4lj" path="res://scripts/stats_hud.gd" id="3_stats"]
+[ext_resource type="PackedScene" uid="uid://34ovja2nt2bk" path="res://scenes/well_template.tscn" id="4_pls23"]
+[ext_resource type="Script" uid="uid://c2shftykxch4c" path="res://scenes/build_well.gd" id="4_sh0tg"]
+[ext_resource type="PackedScene" uid="uid://c6sgyp5ewcqge" path="res://scenes/generator_template.tscn" id="5_qj3iy"]
+[ext_resource type="PackedScene" uid="uid://dhtwtqc6f8h6q" path="res://scenes/grass_template.tscn" id="7_27p3u"]
+
+[node name="World" type="Node2D" unique_id=843234056]
+script = ExtResource("1_u82pb")
+metadata/support = 100
+metadata/money = 500
+metadata/max_teams = 3
+metadata/used_teams = 0
+
+[node name="player" type="CharacterBody2D" parent="." unique_id=1351970569]
+process_mode = 3
+script = ExtResource("3_pls23")
+
+[node name="Camera2D" type="Camera2D" parent="player" unique_id=1863578224]
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=365164596]
+script = ExtResource("3_stats")
+
+[node name="MoneyPanel" type="PanelContainer" parent="HUD" unique_id=1429605165]
+offset_left = 16.0
+offset_top = 16.0
+mouse_filter = 2
+
+[node name="Padding" type="MarginContainer" parent="HUD/MoneyPanel" unique_id=1637758547]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="MoneyLabel" type="Label" parent="HUD/MoneyPanel/Padding" unique_id=1647576176]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Money: $0"
+
+[node name="SupportPanel" type="PanelContainer" parent="HUD" unique_id=1764448234]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -120.0
+offset_right = -16.0
+offset_bottom = 120.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Padding" type="MarginContainer" parent="HUD/SupportPanel" unique_id=1202397610]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="Stats" type="VBoxContainer" parent="HUD/SupportPanel/Padding" unique_id=2071860984]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="SupportLabel" type="Label" parent="HUD/SupportPanel/Padding/Stats" unique_id=2086584325]
+layout_mode = 2
+text = "Support"
+horizontal_alignment = 1
+
+[node name="SupportBar" type="ProgressBar" parent="HUD/SupportPanel/Padding/Stats" unique_id=337172317]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+mouse_filter = 2
+value = 100.0
+fill_mode = 3
+show_percentage = false
+
+[node name="SupportValue" type="Label" parent="HUD/SupportPanel/Padding/Stats" unique_id=847710344]
+unique_name_in_owner = true
+layout_mode = 2
+text = "100%"
+horizontal_alignment = 1
+
+[node name="BuildPanel" type="PanelContainer" parent="HUD" unique_id=2000191060]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -16.0
+offset_right = 304.0
+offset_bottom = -16.0
+grow_vertical = 0
+
+[node name="Padding" type="MarginContainer" parent="HUD/BuildPanel" unique_id=430480357]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="Details" type="VBoxContainer" parent="HUD/BuildPanel/Padding" unique_id=943467910]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Objective" type="Label" parent="HUD/BuildPanel/Padding/Details" unique_id=1433458094]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Supply all houses"
+
+[node name="WaterProgress" type="Label" parent="HUD/BuildPanel/Padding/Details" unique_id=263591710]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Homes with water: 0 / 10"
+
+[node name="PowerProgress" type="Label" parent="HUD/BuildPanel/Padding/Details" unique_id=1618452479]
+layout_mode = 2
+text = "Homes with power 0/10"
+
+[node name="BuildWell" type="Button" parent="HUD/BuildPanel/Padding/Details" unique_id=1669792268]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "B: Place a well"
+text = "Place a well, $100"
+script = ExtResource("4_sh0tg")
+
+[node name="BuildGen" type="Button" parent="HUD/BuildPanel/Padding/Details" unique_id=1199396614]
+layout_mode = 2
+tooltip_text = "B: Place a well"
+text = "Place a generator, $250"
+
+[node name="PreviewDetails" type="VBoxContainer" parent="HUD/BuildPanel/Padding/Details" unique_id=29191601]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="PreviewCount" type="Label" parent="HUD/BuildPanel/Padding/Details/PreviewDetails" unique_id=268469276]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PreviewHint" type="Label" parent="HUD/BuildPanel/Padding/Details/PreviewDetails" unique_id=1518890690]
+unique_name_in_owner = true
+layout_mode = 2
+autowrap_mode = 3
+
+[node name="ResultScreen" type="CenterContainer" parent="HUD" unique_id=329376164]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResultPanel" type="PanelContainer" parent="HUD/ResultScreen" unique_id=502252266]
+custom_minimum_size = Vector2(288, 0)
+layout_mode = 2
+
+[node name="Padding" type="MarginContainer" parent="HUD/ResultScreen/ResultPanel" unique_id=988117626]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 16
+
+[node name="Result" type="VBoxContainer" parent="HUD/ResultScreen/ResultPanel/Padding" unique_id=639443283]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="ResultMessage" type="Label" parent="HUD/ResultScreen/ResultPanel/Padding/Result" unique_id=1696614882]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Retry" type="Button" parent="HUD/ResultScreen/ResultPanel/Padding/Result" unique_id=1951308890]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="well" parent="." unique_id=2044072898 instance=ExtResource("4_pls23")]
+position = Vector2(3191, 266)
+
+[node name="generator" parent="." unique_id=1917306848 instance=ExtResource("5_qj3iy")]
+position = Vector2(3188, 1006)
+
+[node name="grass" parent="." unique_id=2048645258 instance=ExtResource("7_27p3u")]
+position = Vector2(1490, 514)
+
+[connection signal="pressed" from="HUD/BuildPanel/Padding/Details/BuildWell" to="HUD/BuildPanel/Padding/Details/BuildWell" method="toggle_placement"]
+[connection signal="pressed" from="HUD/ResultScreen/ResultPanel/Padding/Result/Retry" to="." method="restart_round"]

@@ -1,6 +1,6 @@
 # cascadia bounce back
 
-a 2d game about restoring water and power to a city, made for hack club haven seattle.
+A 2D game about restoring water and power to a city, post apocalypse and your resource management helps the city bounce back to life.
 
 ## how to play
 

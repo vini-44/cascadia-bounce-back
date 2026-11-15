@@ -97,6 +97,7 @@ func _connect_houses(houses: Array[Node2D]) -> void:
 		dry_houses.erase(house)
 		house.set_meta("water", true)
 		house.get_node("water_icon").hide()
+	owner.grass_update()
 
 func _on_target_draw() -> void:
 	if not placing_well:

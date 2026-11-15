@@ -8,17 +8,18 @@
 load_path = "res://.godot/imported/dirt.png-0a1ee02e0310eb6b032db25fe6920ea9.ctex"
 
 [node name="grass" type="Node2D" unique_id=2048645258]
+metadata/has_water = false
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1703310941]
+[node name="area" type="Area2D" parent="." unique_id=1703310941]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=848868826]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="area" unique_id=848868826]
 scale = Vector2(1.52, 1.52)
 shape = SubResource("RectangleShape2D_1edri")
 
-[node name="Dirt" type="Sprite2D" parent="." unique_id=464901397]
-scale = Vector2(0.02, 0.02)
+[node name="dirt" type="Sprite2D" parent="." unique_id=464901397]
+scale = Vector2(0.049999997, 0.049999997)
 texture = SubResource("CompressedTexture2D_1ibji")
 
-[node name="Grass" type="Sprite2D" parent="." unique_id=992404672]
-scale = Vector2(0.02, 0.02)
+[node name="grass" type="Sprite2D" parent="." unique_id=992404672]
+scale = Vector2(0.05, 0.05)
 texture = ExtResource("1_spwdn")

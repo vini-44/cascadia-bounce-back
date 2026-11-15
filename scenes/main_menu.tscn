@@ -6,6 +6,9 @@
 [ext_resource type="Script" uid="uid://b2up8iy8nw8nq" path="res://scripts/settings_button.gd" id="3_fu7sn"]
 [ext_resource type="Script" uid="uid://b6xabv8m1f4ri" path="res://scripts/quit_button.gd" id="4_glbon"]
 [ext_resource type="Script" uid="uid://btcr2xh7id48x" path="res://scripts/settings_panel.gd" id="4_jix8l"]
+[ext_resource type="AudioStream" path="res://assets/menu_click.wav" id="6_menu_click"]
+[ext_resource type="Script" path="res://scripts/volume.gd" id="7_volume"]
+[ext_resource type="AudioStream" uid="uid://ek4j87orc2dx" path="res://assets/main_menu_loop.wav" id="8_menu_music"]
 
 [node name="Control" type="Control" unique_id=913363199]
 layout_mode = 3
@@ -15,6 +18,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_8ln24")
+
+[node name="MenuClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_menu_click")
+bus = &"Sound Effects"
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_menu_music")
+autoplay = true
+bus = &"Music"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1498955939]
 z_index = -4096
@@ -64,22 +76,42 @@ script = ExtResource("3_fu7sn")
 oversampling_override = 1.0
 title = "Settings"
 initial_position = 1
-size = Vector2i(1000, 500)
-visible = true
+min_size = Vector2i(320, 144)
 script = ExtResource("4_jix8l")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ButtonSettings/Settings" unique_id=1016943580]
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 996.0
-offset_bottom = 496.0
-scale = Vector2(0.80902565, 2.23546)
-theme_override_font_sizes/normal_font_size = 30
-theme_override_font_sizes/bold_font_size = 30
-theme_override_font_sizes/bold_italics_font_size = 30
-theme_override_font_sizes/italics_font_size = 30
-theme_override_font_sizes/mono_font_size = 30
-text = "Press WASD to move, Q to zoom in, and E to zoom out."
+[node name="Padding" type="MarginContainer" parent="ButtonSettings/Settings"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VolumeControls" type="VBoxContainer" parent="ButtonSettings/Settings/Padding"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="VolumeLabel" type="Label" parent="ButtonSettings/Settings/Padding/VolumeControls"]
+layout_mode = 2
+text = "Master volume"
+
+[node name="MasterVolume" type="HSlider" parent="ButtonSettings/Settings/Padding/VolumeControls"]
+unique_name_in_owner = true
+accessibility_name = "Master volume"
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+script = ExtResource("7_volume")
+
+[node name="Close" type="Button" parent="ButtonSettings/Settings/Padding/VolumeControls"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Close"
 
 [node name="ButtonQuit" type="Button" parent="." unique_id=1697448990]
 layout_mode = 0
@@ -91,3 +123,5 @@ theme_override_colors/font_color = Color(0.34452695, 0.5674738, 0.5632656, 1)
 theme_override_font_sizes/font_size = 50
 text = "QUIT"
 script = ExtResource("4_glbon")
+
+[connection signal="pressed" from="ButtonSettings/Settings/Padding/VolumeControls/Close" to="ButtonSettings/Settings" method="hide"]

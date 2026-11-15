@@ -8,5 +8,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _pressed():
+	$"../MenuClick".play()
 	print("open settings!")
-	$Settings.visible = true
+	$Settings.popup_centered()
+	%MasterVolume.grab_focus()

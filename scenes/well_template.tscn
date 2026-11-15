@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://34ovja2nt2bk"]
 
-[ext_resource type="Texture2D" uid="uid://c1gs7hnjlxd4b" path="res://icon.svg" id="1_3i221"]
+[ext_resource type="Texture2D" uid="uid://dchl23d2qyfr4" path="res://assets/well.png" id="1_3i221"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ipcuq"]
 radius = 64.0
@@ -10,7 +10,6 @@ metadata/is_well = true
 
 [node name="well_texture" type="Sprite2D" parent="." unique_id=285521187]
 texture = ExtResource("1_3i221")
-flip_v = true
 
 [node name="well_area" type="Area2D" parent="." unique_id=1000435522 groups=["well"]]
 

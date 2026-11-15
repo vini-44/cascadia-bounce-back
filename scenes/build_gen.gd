@@ -91,7 +91,7 @@ func _houses_in_well_range(at: Vector2) -> Array[Node2D]:
 		var house_range: CollisionShape2D = house.get_node("house_area/house_range")
 		if well_range.shape.collide(coverage, house_range.shape, house_range.global_transform):
 			served.append(house)
-	print(dry_houses)
+	#print(dry_houses)
 	return served
 
 func _connect_houses(houses: Array[Node2D]) -> void:

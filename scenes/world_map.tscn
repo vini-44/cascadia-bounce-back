@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bcc0epdmljxij"]
 
 [ext_resource type="Script" uid="uid://1m0ry25xiiox" path="res://scripts/world.gd" id="1_u82pb"]
+[ext_resource type="Texture2D" uid="uid://chuu0paythton" path="res://assets/dirt.png" id="2_0hitc"]
 [ext_resource type="Script" uid="uid://bpoc40q5e2vf3" path="res://scripts/player.gd" id="3_pls23"]
 [ext_resource type="Script" uid="uid://d3310jpvmp4lj" path="res://scripts/stats_hud.gd" id="3_stats"]
 [ext_resource type="PackedScene" uid="uid://34ovja2nt2bk" path="res://scenes/well_template.tscn" id="4_pls23"]
@@ -8,6 +9,14 @@
 [ext_resource type="Script" uid="uid://br2wn3upokai" path="res://scenes/build_gen.gd" id="5_gqm84"]
 [ext_resource type="PackedScene" uid="uid://c6sgyp5ewcqge" path="res://scenes/generator_template.tscn" id="5_qj3iy"]
 [ext_resource type="AudioStream" uid="uid://clr3snp2bab8s" path="res://assets/game_loop.wav" id="8_game_music"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ipcuq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4x3x4"]
+size = Vector2(650.39996, 32.800003)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ipcuq"]
+size = Vector2(40.7742, 835.0968)
 
 [node name="World" type="Node2D" unique_id=843234056]
 script = ExtResource("1_u82pb")
@@ -24,6 +33,11 @@ bus = &"Music"
 [node name="player" type="CharacterBody2D" parent="." unique_id=1351970569]
 process_mode = 3
 script = ExtResource("3_pls23")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player" unique_id=1319771335]
+visible = false
+scale = Vector2(10, 10)
+shape = SubResource("CircleShape2D_ipcuq")
 
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=1863578224]
 
@@ -196,11 +210,44 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="well" parent="." unique_id=2044072898 instance=ExtResource("4_pls23")]
+visible = false
 position = Vector2(1000000, 266)
 
 [node name="gen" parent="." unique_id=1917306848 instance=ExtResource("5_qj3iy")]
 visible = false
-position = Vector2(100000, 1006)
+position = Vector2(0, 3309)
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=669655236]
+visible = false
+disable_mode = 1
+collision_layer = 0
+collision_priority = 10.0
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="RigidBody2D" unique_id=1733248815]
+position = Vector2(-98.99999, 3554)
+scale = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_4x3x4")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="RigidBody2D" unique_id=601900959]
+position = Vector2(-3386, 0)
+scale = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_ipcuq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=387304836]
+position = Vector2(3378, -57.999996)
+scale = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_ipcuq")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="RigidBody2D" unique_id=900883909]
+position = Vector2(-10.999756, -4107.9995)
+scale = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_4x3x4")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=562666239]
+z_index = -10
+rotation = -0.0019499148
+scale = Vector2(4.28, 4.28)
+texture = ExtResource("2_0hitc")
 
 [connection signal="pressed" from="HUD/BuildPanel/Padding/Details/BuildWell" to="HUD/BuildPanel/Padding/Details/BuildWell" method="toggle_placement"]
 [connection signal="pressed" from="HUD/BuildPanel/Padding/Details/BuildGen" to="HUD/BuildPanel/Padding/Details/BuildGen" method="toggle_placement"]

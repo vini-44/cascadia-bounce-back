@@ -18,7 +18,7 @@ var rng = RandomNumberGenerator.new()
 @onready var hud: StatsHUD = $HUD
 
 func _ready():
-	spawn_houses(100,10,125)
+	spawn_houses(250,20,125)
 	%BuildWell.dry_houses.assign(house_list)
 	%BuildGen.dry_houses.assign(house_list)
 	
@@ -69,6 +69,7 @@ func _physics_process(delta: float) -> void:
 	for current_house in house_list:
 		house_update(current_house)
 		#print(current_house)
+		pass
 
 func day_event() -> void:
 	if round_finished:

@@ -112,6 +112,7 @@ func _connect_houses(houses: Array[Node2D]) -> void:
 func _on_target_draw() -> void:
 	if not placing_well:
 		return
+	
 	var center := (preview_position + well_range.global_position - starting_well.global_position)
 	var radius := (well_range.shape as CircleShape2D).radius * well_range.scale.x
 	var accent := Color(0.42, 0.78, 0.90)

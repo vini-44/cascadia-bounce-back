@@ -11,7 +11,7 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ipcuq"]
 
-[node name="house" type="Node2D" unique_id=902785848 groups=["house"]]
+[node name="house2" type="Node2D" unique_id=902785848 groups=["house"]]
 metadata/damage_state = 0
 metadata/water = false
 metadata/power = false
@@ -22,24 +22,24 @@ scale = Vector2(0.29, 0.29)
 texture = ExtResource("1_cua4b")
 script = ExtResource("2_rj35m")
 
-[node name="house1_healthy" type="Sprite2D" parent="." unique_id=74471229]
-visible = false
-scale = Vector2(0.29, 0.29)
-texture = ExtResource("3_yx3hi")
-
 [node name="house1_dead" type="Sprite2D" parent="." unique_id=1661689143]
 scale = Vector2(0.29, 0.29)
 texture = ExtResource("4_hem6l")
+
+[node name="house1_nowater" type="Sprite2D" parent="." unique_id=1029634153]
+visible = false
+scale = Vector2(0.29, 0.29)
+texture = ExtResource("6_xte5k")
 
 [node name="house1_nopower" type="Sprite2D" parent="." unique_id=343267387]
 visible = false
 scale = Vector2(0.29, 0.29)
 texture = ExtResource("5_rvbi7")
 
-[node name="house1_nowater" type="Sprite2D" parent="." unique_id=1029634153]
+[node name="house1_healthy" type="Sprite2D" parent="." unique_id=74471229]
 visible = false
 scale = Vector2(0.29, 0.29)
-texture = ExtResource("6_xte5k")
+texture = ExtResource("3_yx3hi")
 
 [node name="house_area" type="Area2D" parent="." unique_id=1114805577 groups=["house"]]
 

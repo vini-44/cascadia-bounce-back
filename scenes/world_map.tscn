@@ -4,13 +4,14 @@
 [ext_resource type="Script" uid="uid://bpoc40q5e2vf3" path="res://scripts/player.gd" id="3_pls23"]
 [ext_resource type="Script" uid="uid://d3310jpvmp4lj" path="res://scripts/stats_hud.gd" id="3_stats"]
 [ext_resource type="PackedScene" uid="uid://34ovja2nt2bk" path="res://scenes/well_template.tscn" id="4_pls23"]
+[ext_resource type="Script" uid="uid://c2shftykxch4c" path="res://scenes/build_well.gd" id="4_sh0tg"]
 [ext_resource type="PackedScene" uid="uid://c6sgyp5ewcqge" path="res://scenes/generator_template.tscn" id="5_qj3iy"]
 
 [node name="World" type="Node2D" unique_id=843234056]
 script = ExtResource("1_u82pb")
 metadata/support = 100
-metadata/money = 0
-metadata/max_teams = 0
+metadata/money = 500
+metadata/max_teams = 3
 metadata/used_teams = 0
 
 [node name="player" type="CharacterBody2D" parent="." unique_id=1351970569]
@@ -110,21 +111,31 @@ theme_override_constants/margin_bottom = 8
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="WaterObjective" type="Label" parent="HUD/BuildPanel/Padding/Details" unique_id=1433458094]
+[node name="Objective" type="Label" parent="HUD/BuildPanel/Padding/Details" unique_id=1433458094]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Connect 10 more homes to water"
+text = "Supply all houses"
 
 [node name="WaterProgress" type="Label" parent="HUD/BuildPanel/Padding/Details" unique_id=263591710]
 unique_name_in_owner = true
 layout_mode = 2
-text = "New homes with water: 0 / 10"
+text = "Homes with water: 0 / 10"
+
+[node name="PowerProgress" type="Label" parent="HUD/BuildPanel/Padding/Details" unique_id=1618452479]
+layout_mode = 2
+text = "Homes with power 0/10"
 
 [node name="BuildWell" type="Button" parent="HUD/BuildPanel/Padding/Details" unique_id=1669792268]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "B: Place a well"
 text = "Place a well, $100"
+script = ExtResource("4_sh0tg")
+
+[node name="BuildGen" type="Button" parent="HUD/BuildPanel/Padding/Details" unique_id=1199396614]
+layout_mode = 2
+tooltip_text = "B: Place a well"
+text = "Place a generator, $250"
 
 [node name="PreviewDetails" type="VBoxContainer" parent="HUD/BuildPanel/Padding/Details" unique_id=29191601]
 unique_name_in_owner = true
@@ -180,5 +191,5 @@ position = Vector2(3191, 266)
 [node name="generator" parent="." unique_id=1917306848 instance=ExtResource("5_qj3iy")]
 position = Vector2(3188, 1006)
 
-[connection signal="pressed" from="HUD/BuildPanel/Padding/Details/BuildWell" to="." method="toggle_placement"]
+[connection signal="pressed" from="HUD/BuildPanel/Padding/Details/BuildWell" to="HUD/BuildPanel/Padding/Details/BuildWell" method="toggle_placement"]
 [connection signal="pressed" from="HUD/ResultScreen/ResultPanel/Padding/Result/Retry" to="." method="restart_round"]

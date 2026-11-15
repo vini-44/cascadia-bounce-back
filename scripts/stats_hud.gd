@@ -1,17 +1,17 @@
 extends CanvasLayer
 
-@onready var money_label: Label = %MoneyLabel
-@onready var support_bar: ProgressBar = %SupportBar
-@onready var support_value: Label = %SupportValue
-@onready var objective: Label = %WaterObjective
-@onready var progress: Label = %WaterProgress
-@onready var build_button: Button = %BuildWell
-@onready var preview_details: VBoxContainer = %PreviewDetails
-@onready var preview_count: Label = %PreviewCount
-@onready var preview_hint: Label = %PreviewHint
-@onready var result_screen: CenterContainer = %ResultScreen
-@onready var result_message: Label = %ResultMessage
-@onready var retry_button: Button = %Retry
+@onready var money_label: Label = $MoneyPanel/Padding/MoneyLabel
+@onready var support_bar: ProgressBar = $SupportPanel/Padding/Stats/SupportBar
+@onready var support_value: Label = $SupportPanel/Padding/Stats/SupportValue
+@onready var objective: Label = $BuildPanel/Padding/Details/Objective
+@onready var progress: Label = $BuildPanel/Padding/Details/WaterProgress
+@onready var build_button: Button = $BuildPanel/Padding/Details/BuildWell
+@onready var preview_details: VBoxContainer = $BuildPanel/Padding/Details/PreviewDetails
+@onready var preview_count: Label = $BuildPanel/Padding/Details/PreviewDetails/PreviewCount
+@onready var preview_hint: Label = $BuildPanel/Padding/Details/PreviewDetails/PreviewHint
+@onready var result_screen: CenterContainer = $ResultScreen
+@onready var result_message: Label = $ResultScreen/ResultPanel/Padding/Result/ResultMessage
+@onready var retry_button: Button = $ResultScreen/ResultPanel/Padding/Result/Retry
 
 func _ready() -> void:
 	support_bar.value_changed.connect(_update_support_value)
@@ -34,7 +34,6 @@ func _format_money(amount: float) -> String:
 	return "$%d" % amount if is_equal_approx(amount, floorf(amount)) else "$%.2f" % amount
 
 func setup_round(cost: int, goal: int) -> void:
-	objective.text = "Connect %d more homes to water" % goal
 	build_button.text = "Place a well, $%d" % cost
 	show_progress(0, goal)
 

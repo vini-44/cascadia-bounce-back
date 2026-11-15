@@ -76,11 +76,7 @@ script = ExtResource("3_fu7sn")
 oversampling_override = 1.0
 title = "Settings"
 initial_position = 1
-<<<<<<< HEAD
-size = Vector2i(1000, 500)
-=======
 min_size = Vector2i(320, 144)
->>>>>>> d9a48b360aecc37410866b9c7ca9fba5db93bd6b
 script = ExtResource("4_jix8l")
 
 [node name="Padding" type="MarginContainer" parent="ButtonSettings/Settings"]
@@ -97,6 +93,11 @@ theme_override_constants/margin_bottom = 16
 [node name="VolumeControls" type="VBoxContainer" parent="ButtonSettings/Settings/Padding"]
 layout_mode = 2
 theme_override_constants/separation = 12
+
+[node name="ControlsHelp" type="Label" parent="ButtonSettings/Settings/Padding/VolumeControls"]
+layout_mode = 2
+text = "Press WASD to move, Q to zoom in, and E to zoom out."
+autowrap_mode = 3
 
 [node name="VolumeLabel" type="Label" parent="ButtonSettings/Settings/Padding/VolumeControls"]
 layout_mode = 2

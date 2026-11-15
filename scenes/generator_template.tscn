@@ -2,17 +2,16 @@
 
 [ext_resource type="Texture2D" uid="uid://c1gs7hnjlxd4b" path="res://icon.svg" id="1_k1vir"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4xi4i"]
-size = Vector2(133, 132)
+[sub_resource type="CircleShape2D" id="CircleShape2D_gqm84"]
 
 [node name="generator" type="Node2D" unique_id=1917306848 groups=["power_source"]]
 
 [node name="gen_sprite" type="Sprite2D" parent="." unique_id=1505501316]
 texture = ExtResource("1_k1vir")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1332494883 groups=["power_source"]]
+[node name="gen_area" type="Area2D" parent="." unique_id=1332494883 groups=["power_source"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2035694873]
+[node name="gen_range" type="CollisionShape2D" parent="gen_area" unique_id=2035694873]
 position = Vector2(0.5, -1)
-scale = Vector2(10, 10)
-shape = SubResource("RectangleShape2D_4xi4i")
+scale = Vector2(100, 100)
+shape = SubResource("CircleShape2D_gqm84")

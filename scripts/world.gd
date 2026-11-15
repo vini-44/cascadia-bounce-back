@@ -8,7 +8,9 @@ var day = 0
 var occupied_positions: Dictionary = {}
 
 var house_list: Array[Node2D]
+var grass_list: Array[Node2D]
 
+const grass_template = preload("res://scenes/grass_template.tscn")
 const house_template = preload("res://scenes/house_template.tscn")
 const StatsHUD = preload("res://scripts/stats_hud.gd")
 var rng = RandomNumberGenerator.new()
@@ -21,7 +23,16 @@ func _ready():
 	
 
 func spawn_houses(max_house:int, size: int, grid_size:int) -> void:
-	
+	for grass_y in range(-size*4, size*4):
+		for grass_x in range(-size*4, size*4):
+			var grass_pos = Vector2i(grass_x,grass_y)*grid_size
+			var grass = grass_template.instantiate()
+			grass.global_position = grass_pos
+			
+			add_child(grass)
+			grass_list.append(grass)
+			grass.get_node("grass").hide()
+			
 	for house_number in max_house:
 		var grid_pos = Vector2i(rng.randi_range(-size,size),rng.randi_range(-size,size))
 		
@@ -38,7 +49,8 @@ func spawn_houses(max_house:int, size: int, grid_size:int) -> void:
 			add_child(house)
 			house_list.append(house)
 			#print("house made")
-	
+	%BuildWell.WATER_GOAL = house_list.size()
+	%BuildGen.WATER_GOAL = house_list.size()
 	#print(house_list)
 
 func _process(delta: float) -> void:
@@ -52,7 +64,7 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void: 
 	for current_house in house_list:
-		house_update(current_house);
+		house_update(current_house)
 		#print(current_house)
 
 func day_event() -> void:
@@ -103,6 +115,18 @@ func house_update(house: Node2D):
 	if has_power != house.get_meta("power"):
 		house.set_meta("power", has_power)
 		power_icon.visible = not has_power
+		
+func grass_update():
+	for grass in grass_list:
+		var area = grass.get_node("area") as Area2D	
+		var grass_tex = grass.get_node("grass") as Sprite2D
+		var has_water := area.get_overlapping_areas().any(
+			func(other: Area2D) -> bool: return other.is_in_group("power_source")
+		)
+		#print(has_water)
+		if has_water != grass.get_meta("has_water"):
+			grass.set_meta("water", has_water)
+			grass_tex.visible = not has_water
 
 func _finish_round(won: bool) -> void:
 	round_finished = true

@@ -3,7 +3,7 @@ extends Button
 const WELL_TEMPLATE := preload("res://scenes/well_template.tscn")
 const StatsHUD = preload("res://scripts/stats_hud.gd")
 const WELL_COST := 100
-const WATER_GOAL := 50
+@onready var WATER_GOAL = owner.house_list.size()
 
 var connected_homes := 0
 var placing_well := false
@@ -76,7 +76,7 @@ func _try_build_well(at: Vector2) -> void:
 	owner.set_meta("money", owner.get_meta("money") - WELL_COST)
 	_connect_houses(newly_served)
 	connected_homes += newly_served.size()
-	hud.show_progress(connected_homes, WATER_GOAL)
+	hud.show_progress(connected_homes, WATER_GOAL, %WaterProgress)
 	_cancel_placement()
 	
 	#if connected_homes >= WATER_GOAL:
@@ -97,6 +97,7 @@ func _connect_houses(houses: Array[Node2D]) -> void:
 		dry_houses.erase(house)
 		house.set_meta("water", true)
 		house.get_node("water_icon").hide()
+	owner.grass_update()
 
 func _on_target_draw() -> void:
 	if not placing_well:

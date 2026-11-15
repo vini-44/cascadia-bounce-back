@@ -8,6 +8,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _pressed():
-	if pressed:
-		print("quit!")
-		get_tree().quit()
+	if disabled:
+		return
+	disabled = true
+	var click: AudioStreamPlayer = $"../MenuClick"
+	click.play()
+	await click.finished
+	print("quit!")
+	get_tree().quit()

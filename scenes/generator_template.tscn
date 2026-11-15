@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c6sgyp5ewcqge"]
 
-[ext_resource type="Texture2D" uid="uid://c1gs7hnjlxd4b" path="res://icon.svg" id="1_k1vir"]
+[ext_resource type="Texture2D" uid="uid://dv3ab41jc50ya" path="res://assets/gen_photo.webp" id="1_k1vir"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gqm84"]
 

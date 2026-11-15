@@ -18,7 +18,7 @@ var dry_houses: Array[Node2D] = []
 @onready var target_canvas: Node2D = owner
 
 func _ready():
-	dry_houses.assign(owner.house_list)		
+	dry_houses.assign(owner.house_list)	
 	target_canvas.draw.connect(_on_target_draw)
 
 	#hud.setup_round(WELL_COST, WATER_GOAL)
@@ -91,6 +91,7 @@ func _houses_in_well_range(at: Vector2) -> Array[Node2D]:
 		var house_range: CollisionShape2D = house.get_node("house_area/house_range")
 		if well_range.shape.collide(coverage, house_range.shape, house_range.global_transform):
 			served.append(house)
+	print(dry_houses)
 	return served
 
 func _connect_houses(houses: Array[Node2D]) -> void:
@@ -98,6 +99,16 @@ func _connect_houses(houses: Array[Node2D]) -> void:
 		dry_houses.erase(house)
 		house.set_meta("power", true)
 		house.get_node("power_icon").hide()
+		if house.get_meta("water") == false:
+			house.get_node("house1_dead").hide()
+			house.get_node("house1_nowater").show()
+			house.get_node("house1_healthy").hide()
+			house.get_node("house1_nopower").hide()
+		else:
+			house.get_node("house1_dead").hide()
+			house.get_node("house1_nowater").hide()
+			house.get_node("house1_healthy").show()
+			house.get_node("house1_nopower").hide()
 
 func _on_target_draw() -> void:
 	if not placing_well:

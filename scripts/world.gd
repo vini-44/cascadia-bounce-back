@@ -12,6 +12,7 @@ var grass_list: Array[Node2D]
 
 const grass_template = preload("res://scenes/grass_template.tscn")
 const house_template = preload("res://scenes/house_template.tscn")
+const house2_template = preload("res://scenes/house2_template.tscn")
 const StatsHUD = preload("res://scripts/stats_hud.gd")
 var rng = RandomNumberGenerator.new()
 
@@ -20,6 +21,7 @@ var rng = RandomNumberGenerator.new()
 func _ready():
 	spawn_houses(100,10,125)
 	%BuildWell.dry_houses.assign(house_list)
+	%BuildGen.dry_houses.assign(house_list)
 	
 
 func spawn_houses(max_house:int, size: int, grid_size:int) -> void:
@@ -41,7 +43,11 @@ func spawn_houses(max_house:int, size: int, grid_size:int) -> void:
 			pass
 			
 		else:
-			var house = house_template.instantiate()
+			var house
+			if (rng.randf()>0.5):
+				house = house_template.instantiate()
+			else:
+				house = house2_template.instantiate()
 			house.name = str("House_", house_number)
 			house.global_position = grid_pos*grid_size
 			occupied_positions[grid_pos] = true

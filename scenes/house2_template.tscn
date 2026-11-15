@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://sq6h4yewlqfw"]
+
+[ext_resource type="Texture2D" uid="uid://c1gs7hnjlxd4b" path="res://icon.svg" id="1_igivq"]
+[ext_resource type="Script" uid="uid://bs5b5oi6k4g5w" path="res://scripts/house.gd" id="2_5qvgy"]
+[ext_resource type="Texture2D" uid="uid://b3sqs8vio23o4" path="res://assets/house_full.webp" id="3_igivq"]
+[ext_resource type="Texture2D" uid="uid://bfymm65p7r1tx" path="res://assets/house2_dead.webp" id="4_5qvgy"]
+[ext_resource type="Texture2D" uid="uid://bwik2aug4uora" path="res://assets/house2_no_power.webp" id="5_1lwmr"]
+[ext_resource type="Texture2D" uid="uid://hftocycjk3w1" path="res://assets/house2_no_water.webp" id="6_atn67"]
+[ext_resource type="Texture2D" uid="uid://dyojrwojjm1wx" path="res://assets/water_icon.png" id="7_1xhq4"]
+[ext_resource type="Texture2D" uid="uid://dohkfamyqsbko" path="res://assets/powernopng.png" id="8_ay2v6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8jvms"]
+
+[node name="house" type="Node2D" unique_id=1533716846]
+
+[node name="house_texture" type="Sprite2D" parent="." unique_id=1257036100]
+visible = false
+scale = Vector2(0.29, 0.29)
+texture = ExtResource("1_igivq")
+script = ExtResource("2_5qvgy")
+
+[node name="house1_healthy" type="Sprite2D" parent="." unique_id=1143165366]
+visible = false
+scale = Vector2(0.29, 0.29)
+texture = ExtResource("3_igivq")
+
+[node name="house1_dead" type="Sprite2D" parent="." unique_id=1023820458]
+scale = Vector2(0.29, 0.29)
+texture = ExtResource("4_5qvgy")
+
+[node name="house1_nopower" type="Sprite2D" parent="." unique_id=308118198]
+visible = false
+scale = Vector2(0.29, 0.29)
+texture = ExtResource("5_1lwmr")
+
+[node name="house1_nowater" type="Sprite2D" parent="." unique_id=1366166877]
+visible = false
+scale = Vector2(0.29, 0.29)
+texture = ExtResource("6_atn67")
+
+[node name="house_area" type="Area2D" parent="." unique_id=225811930 groups=["house"]]
+
+[node name="house_range" type="CollisionShape2D" parent="house_area" unique_id=1766560524]
+scale = Vector2(6.16, 6.16)
+shape = SubResource("RectangleShape2D_8jvms")
+
+[node name="water_icon" type="Sprite2D" parent="." unique_id=71587149]
+position = Vector2(-31, -30.000002)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_1xhq4")
+
+[node name="power_icon" type="Sprite2D" parent="." unique_id=2040351801]
+position = Vector2(32, -29.000002)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("8_ay2v6")

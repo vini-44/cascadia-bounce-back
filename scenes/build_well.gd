@@ -97,6 +97,17 @@ func _connect_houses(houses: Array[Node2D]) -> void:
 		dry_houses.erase(house)
 		house.set_meta("water", true)
 		house.get_node("water_icon").hide()
+		if house.get_meta("power") == false:
+			house.get_node("house1_dead").hide()
+			house.get_node("house1_nowater").hide()
+			house.get_node("house1_healthy").hide()
+			house.get_node("house1_nopower").show()
+		else:
+			house.get_node("house1_dead").hide()
+			house.get_node("house1_nowater").hide()
+			house.get_node("house1_healthy").show()
+			house.get_node("house1_nopower").hide()
+			
 	owner.grass_update()
 
 func _on_target_draw() -> void:

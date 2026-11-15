@@ -17,7 +17,7 @@ metadata/money = 500
 metadata/max_teams = 3
 metadata/used_teams = 0
 
-[node name="GameMusic" type="AudioStreamPlayer" parent="."]
+[node name="GameMusic" type="AudioStreamPlayer" parent="." unique_id=88142177]
 stream = ExtResource("8_game_music")
 autoplay = true
 bus = &"Music"
@@ -197,12 +197,15 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="well" parent="." unique_id=2044072898 instance=ExtResource("4_pls23")]
+visible = false
 position = Vector2(3191, 266)
 
 [node name="gen" parent="." unique_id=1917306848 instance=ExtResource("5_qj3iy")]
+visible = false
 position = Vector2(3188, 1006)
 
 [node name="grass" parent="." unique_id=2048645258 instance=ExtResource("7_27p3u")]
+visible = false
 position = Vector2(1490, 514)
 
 [connection signal="pressed" from="HUD/BuildPanel/Padding/Details/BuildWell" to="HUD/BuildPanel/Padding/Details/BuildWell" method="toggle_placement"]

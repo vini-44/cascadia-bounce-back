@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://c2shftykxch4c" path="res://scenes/build_well.gd" id="4_sh0tg"]
 [ext_resource type="PackedScene" uid="uid://c6sgyp5ewcqge" path="res://scenes/generator_template.tscn" id="5_qj3iy"]
 [ext_resource type="PackedScene" uid="uid://dhtwtqc6f8h6q" path="res://scenes/grass_template.tscn" id="7_27p3u"]
+[ext_resource type="AudioStream" uid="uid://clr3snp2bab8s" path="res://assets/game_loop.wav" id="8_game_music"]
 
 [node name="World" type="Node2D" unique_id=843234056]
 script = ExtResource("1_u82pb")
@@ -14,6 +15,11 @@ metadata/support = 100
 metadata/money = 500
 metadata/max_teams = 3
 metadata/used_teams = 0
+
+[node name="GameMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_game_music")
+autoplay = true
+bus = &"Music"
 
 [node name="player" type="CharacterBody2D" parent="." unique_id=1351970569]
 process_mode = 3

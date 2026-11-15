@@ -8,5 +8,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _pressed():
-	print("quit!")
-	get_tree().quit()
+	if pressed:
+		print("quit!")
+		get_tree().quit()

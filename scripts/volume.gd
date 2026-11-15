@@ -1,15 +1,18 @@
 extends HSlider
 
+@export var bus_name := &"Master"
 
-# Called when the node enters the scene tree for the first time.
+@onready var bus_index := AudioServer.get_bus_index(bus_name)
+
 func _ready() -> void:
-	bus_index = AudioServer.get_bus_index(bus_name)
-	
-	value = db_to_linear(AudioServer.get_bus_volume_db(bus_index))
+	if bus_index < 0:
+		editable = false
+		return
+	var volume := 0.0 if AudioServer.is_bus_mute(bus_index) else AudioServer.get_bus_volume_linear(bus_index)
+	set_value_no_signal(volume)
+	value_changed.connect(_set_bus_volume)
 
-
-	
-@export
-var bus_name:= "Master"
-
-var bus_index: int
+func _set_bus_volume(volume: float) -> void:
+	if volume > 0.0:
+		AudioServer.set_bus_volume_linear(bus_index, volume)
+	AudioServer.set_bus_mute(bus_index, volume == 0.0)

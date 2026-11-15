@@ -7,5 +7,12 @@ func _ready() -> void:
 
 
 func _pressed():
+	if disabled:
+		return
+	disabled = true
+	var click: AudioStreamPlayer = $"../MenuClick"
+	click.play()
+	await click.finished
 	print("play!")
-	get_tree().change_scene_to_file("res://scenes/world_map.tscn")
+	if get_tree().change_scene_to_file("res://scenes/world_map.tscn") != OK:
+		disabled = false

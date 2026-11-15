@@ -1,23 +1,43 @@
 [gd_scene format=3 uid="uid://bcc0epdmljxij"]
 
 [ext_resource type="Script" uid="uid://1m0ry25xiiox" path="res://scripts/world.gd" id="1_u82pb"]
+[ext_resource type="Texture2D" uid="uid://chuu0paythton" path="res://assets/dirt.png" id="2_0hitc"]
 [ext_resource type="Script" uid="uid://bpoc40q5e2vf3" path="res://scripts/player.gd" id="3_pls23"]
 [ext_resource type="Script" uid="uid://d3310jpvmp4lj" path="res://scripts/stats_hud.gd" id="3_stats"]
 [ext_resource type="PackedScene" uid="uid://34ovja2nt2bk" path="res://scenes/well_template.tscn" id="4_pls23"]
 [ext_resource type="Script" uid="uid://c2shftykxch4c" path="res://scenes/build_well.gd" id="4_sh0tg"]
+[ext_resource type="Script" uid="uid://br2wn3upokai" path="res://scenes/build_gen.gd" id="5_gqm84"]
 [ext_resource type="PackedScene" uid="uid://c6sgyp5ewcqge" path="res://scenes/generator_template.tscn" id="5_qj3iy"]
-[ext_resource type="PackedScene" uid="uid://dhtwtqc6f8h6q" path="res://scenes/grass_template.tscn" id="7_27p3u"]
+[ext_resource type="AudioStream" uid="uid://clr3snp2bab8s" path="res://assets/game_loop.wav" id="8_game_music"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ipcuq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4x3x4"]
+size = Vector2(650.39996, 32.800003)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ipcuq"]
+size = Vector2(40.7742, 835.0968)
 
 [node name="World" type="Node2D" unique_id=843234056]
 script = ExtResource("1_u82pb")
 metadata/support = 100
-metadata/money = 500
+metadata/money = 350
 metadata/max_teams = 3
 metadata/used_teams = 0
+
+[node name="GameMusic" type="AudioStreamPlayer" parent="." unique_id=88142177]
+stream = ExtResource("8_game_music")
+autoplay = true
+bus = &"Music"
 
 [node name="player" type="CharacterBody2D" parent="." unique_id=1351970569]
 process_mode = 3
 script = ExtResource("3_pls23")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player" unique_id=1319771335]
+visible = false
+scale = Vector2(10, 10)
+shape = SubResource("CircleShape2D_ipcuq")
 
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=1863578224]
 
@@ -37,10 +57,18 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 8
 
-[node name="MoneyLabel" type="Label" parent="HUD/MoneyPanel/Padding" unique_id=1647576176]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/MoneyPanel/Padding" unique_id=562793080]
+layout_mode = 2
+
+[node name="MoneyLabel" type="Label" parent="HUD/MoneyPanel/Padding/VBoxContainer" unique_id=1647576176]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Money: $0"
+
+[node name="IncomeLabel" type="Label" parent="HUD/MoneyPanel/Padding/VBoxContainer" unique_id=1813832902]
+unique_name_in_owner = true
+layout_mode = 2
+text = "+xx$"
 
 [node name="SupportPanel" type="PanelContainer" parent="HUD" unique_id=1764448234]
 anchors_preset = 6
@@ -91,6 +119,11 @@ layout_mode = 2
 text = "100%"
 horizontal_alignment = 1
 
+[node name="SupportChange" type="Label" parent="HUD/SupportPanel/Padding/Stats" unique_id=1124500912]
+unique_name_in_owner = true
+layout_mode = 2
+text = "-xx%"
+
 [node name="BuildPanel" type="PanelContainer" parent="HUD" unique_id=2000191060]
 anchors_preset = 2
 anchor_top = 1.0
@@ -123,6 +156,7 @@ layout_mode = 2
 text = "Homes with water: 0 / 10"
 
 [node name="PowerProgress" type="Label" parent="HUD/BuildPanel/Padding/Details" unique_id=1618452479]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Homes with power 0/10"
 
@@ -134,9 +168,11 @@ text = "Place a well, $100"
 script = ExtResource("4_sh0tg")
 
 [node name="BuildGen" type="Button" parent="HUD/BuildPanel/Padding/Details" unique_id=1199396614]
+unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "B: Place a well"
 text = "Place a generator, $250"
+script = ExtResource("5_gqm84")
 
 [node name="PreviewDetails" type="VBoxContainer" parent="HUD/BuildPanel/Padding/Details" unique_id=29191601]
 unique_name_in_owner = true
@@ -187,13 +223,45 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="well" parent="." unique_id=2044072898 instance=ExtResource("4_pls23")]
-position = Vector2(3191, 266)
+visible = false
+position = Vector2(1000000, 266)
 
-[node name="generator" parent="." unique_id=1917306848 instance=ExtResource("5_qj3iy")]
-position = Vector2(3188, 1006)
+[node name="gen" parent="." unique_id=1917306848 instance=ExtResource("5_qj3iy")]
+visible = false
+position = Vector2(0, 3309)
 
-[node name="grass" parent="." unique_id=2048645258 instance=ExtResource("7_27p3u")]
-position = Vector2(1490, 514)
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=669655236]
+visible = false
+disable_mode = 1
+collision_layer = 0
+collision_priority = 10.0
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="RigidBody2D" unique_id=1733248815]
+position = Vector2(-98.99999, 3554)
+scale = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_4x3x4")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="RigidBody2D" unique_id=601900959]
+position = Vector2(-3386, 0)
+scale = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_ipcuq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=387304836]
+position = Vector2(3378, -57.999996)
+scale = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_ipcuq")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="RigidBody2D" unique_id=900883909]
+position = Vector2(-10.999756, -4107.9995)
+scale = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_4x3x4")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=562666239]
+z_index = -10
+rotation = -0.0019499148
+scale = Vector2(4.28, 4.28)
+texture = ExtResource("2_0hitc")
 
 [connection signal="pressed" from="HUD/BuildPanel/Padding/Details/BuildWell" to="HUD/BuildPanel/Padding/Details/BuildWell" method="toggle_placement"]
+[connection signal="pressed" from="HUD/BuildPanel/Padding/Details/BuildGen" to="HUD/BuildPanel/Padding/Details/BuildGen" method="toggle_placement"]
 [connection signal="pressed" from="HUD/ResultScreen/ResultPanel/Padding/Result/Retry" to="." method="restart_round"]

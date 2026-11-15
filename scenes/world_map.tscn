@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bcc0epdmljxij"]
 
 [ext_resource type="Script" uid="uid://1m0ry25xiiox" path="res://scripts/world.gd" id="1_u82pb"]
-[ext_resource type="Texture2D" uid="uid://chuu0paythton" path="res://assets/dirt.png" id="2_0hitc"]
 [ext_resource type="Script" uid="uid://bpoc40q5e2vf3" path="res://scripts/player.gd" id="3_pls23"]
 [ext_resource type="Script" uid="uid://d3310jpvmp4lj" path="res://scripts/stats_hud.gd" id="3_stats"]
 [ext_resource type="PackedScene" uid="uid://34ovja2nt2bk" path="res://scenes/well_template.tscn" id="4_pls23"]
@@ -16,13 +15,6 @@ metadata/support = 100
 metadata/money = 500
 metadata/max_teams = 3
 metadata/used_teams = 0
-
-[node name="Dirt" type="Sprite2D" parent="." unique_id=602599778]
-scale = Vector2(2.91, 2.91)
-texture = ExtResource("2_0hitc")
-
-[node name="grass" parent="." unique_id=2048645258 instance=ExtResource("7_27p3u")]
-position = Vector2(1490, 514)
 
 [node name="GameMusic" type="AudioStreamPlayer" parent="." unique_id=88142177]
 stream = ExtResource("8_game_music")

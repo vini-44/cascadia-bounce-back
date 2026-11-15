@@ -108,7 +108,6 @@ func _connect_houses(houses: Array[Node2D]) -> void:
 			house.get_node("house1_healthy").show()
 			house.get_node("house1_nopower").hide()
 			
-	owner.grass_update()
 
 func _on_target_draw() -> void:
 	if not placing_well:

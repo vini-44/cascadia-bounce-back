@@ -5,6 +5,8 @@ var round_finished := false
 var day_elapsed := 0.0
 var day = 0
 
+var has_won = false
+
 var occupied_positions: Dictionary = {}
 
 var house_list: Array[Node2D]
@@ -18,7 +20,7 @@ var rng = RandomNumberGenerator.new()
 @onready var hud: StatsHUD = $HUD
 
 func _ready():
-	spawn_houses(250,20,125)
+	spawn_houses(200,10,125)
 	%BuildWell.dry_houses.assign(house_list)
 	%BuildGen.dry_houses.assign(house_list)
 	
@@ -33,8 +35,8 @@ func spawn_houses(max_house:int, size: int, grid_size:int) -> void:
 			add_child(grass)
 			
 	for house_number in max_house:
-		var grid_pos = Vector2i(rng.randi_range(-size,size),rng.randi_range(-size,size))
-		
+		var grid_pos = Vector2(rng.randfn(0,size),rng.randfn(0,size))
+		print(grid_pos)
 		if occupied_positions.has(grid_pos):
 			#print("house deleted")
 			pass
@@ -46,7 +48,11 @@ func spawn_houses(max_house:int, size: int, grid_size:int) -> void:
 			else:
 				house = house2_template.instantiate()
 			house.name = str("House_", house_number)
-			house.global_position = grid_pos*grid_size
+			var grid_posI = Vector2i(grid_pos)
+			
+			print(grid_posI)
+			
+			house.global_position = grid_posI*grid_size
 			occupied_positions[grid_pos] = true
 			
 			add_child(house)
@@ -74,15 +80,15 @@ func _physics_process(delta: float) -> void:
 func day_event() -> void:
 	if round_finished:
 		return
-	print("day:")
-	print(day)
+	#print("day:")
+	#print(day)
 	
 	var bonus_money = 0
 	for current_house in house_list:
 		if (current_house.get_meta("power") == true):
-			bonus_money += 0.25
+			bonus_money += 0.15
 		if (current_house.get_meta("water") == true):
-			bonus_money += 0.25
+			bonus_money += 0.15
 			
 	%IncomeLabel.text = "+$%d" % int(15+bonus_money)
 	set_meta("money", get_meta("money") + 15 + bonus_money)
@@ -109,11 +115,12 @@ func support_calc():
 	var daily_changeStr = str(round(daily_change*100)/100)
 	set_meta("support", clampf(get_meta("support") - 1.5 + service_support, 0.0, 100.0))
 	
-	print(service_support)
-	print(daily_changeStr)
+	#print(service_support)
+	#print(daily_changeStr)
 	
 	%SupportChange.text = daily_changeStr
-	
+	if daily_change >= 0.2:
+		_finish_round(true)
 	#print(float(total_support/house_count))
 	#print(total_support)
 	#print(house_count)
@@ -134,7 +141,11 @@ func _finish_round(won: bool) -> void:
 	%BuildWell._cancel_placement()
 	$player.process_mode = Node.PROCESS_MODE_DISABLED
 	set_physics_process(false)
-	hud.show_result(won, %BuildWell.connected_homes, %BuildWell.WATER_GOAL)
+	hud.show_result(won)
 
 func restart_round() -> void:
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	
+	if has_won == true:
+		get_tree().change_scene_to_file("res://scenes/winning.tscn")
+	else:
+		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

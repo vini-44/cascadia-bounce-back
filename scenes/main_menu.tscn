@@ -2,6 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://c8h5h66ur7ug1" path="res://main_menu_theme.tres" id="1_8ln24"]
 [ext_resource type="Script" uid="uid://dwj4md5dqv2e4" path="res://scripts/play_button.gd" id="2_7vrkn"]
+[ext_resource type="Texture2D" uid="uid://b5wsxjjt6rsj1" path="res://sky title.png" id="2_rtw2f"]
 [ext_resource type="Script" uid="uid://b2up8iy8nw8nq" path="res://scripts/settings_button.gd" id="3_fu7sn"]
 [ext_resource type="Script" uid="uid://b6xabv8m1f4ri" path="res://scripts/quit_button.gd" id="4_glbon"]
 [ext_resource type="Script" uid="uid://btcr2xh7id48x" path="res://scripts/settings_panel.gd" id="4_jix8l"]
@@ -14,6 +15,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_8ln24")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1498955939]
+z_index = -4096
+position = Vector2(578, 328)
+scale = Vector2(0.32988507, 0.30092594)
+texture = ExtResource("2_rtw2f")
 
 [node name="ButtonPlay" type="Button" parent="." unique_id=523147670]
 layout_mode = 0
@@ -32,6 +39,7 @@ offset_left = 54.0
 offset_top = 33.0
 offset_right = 384.0
 offset_bottom = 182.0
+theme_override_colors/default_color = Color(0.22174624, 0.60875034, 0.42070198, 1)
 theme_override_font_sizes/normal_font_size = 50
 theme_override_font_sizes/bold_font_size = 50
 theme_override_font_sizes/bold_italics_font_size = 50

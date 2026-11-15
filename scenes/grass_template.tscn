@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dhtwtqc6f8h6q"]
 
 [ext_resource type="Texture2D" uid="uid://cfv1gf6he7o6s" path="res://assets/better_grass.png" id="1_spwdn"]
+[ext_resource type="Script" path="res://scripts/grass.gd" id="2_grass"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1edri"]
 
@@ -8,6 +9,8 @@
 load_path = "res://.godot/imported/dirt.png-0a1ee02e0310eb6b032db25fe6920ea9.ctex"
 
 [node name="grass" type="Node2D" unique_id=2048645258]
+z_index = -1
+script = ExtResource("2_grass")
 metadata/has_water = false
 
 [node name="area" type="Area2D" parent="." unique_id=1703310941]
@@ -25,3 +28,6 @@ texture = SubResource("CompressedTexture2D_1ibji")
 visible = false
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("1_spwdn")
+
+[connection signal="area_entered" from="area" to="." method="_on_area_entered"]
+[connection signal="area_exited" from="area" to="." method="_on_area_exited"]

@@ -3,13 +3,13 @@
 [ext_resource type="Script" uid="uid://1m0ry25xiiox" path="res://scripts/world.gd" id="1_u82pb"]
 [ext_resource type="Script" uid="uid://bpoc40q5e2vf3" path="res://scripts/player.gd" id="3_pls23"]
 [ext_resource type="Script" uid="uid://d3310jpvmp4lj" path="res://scripts/stats_hud.gd" id="3_stats"]
-[ext_resource type="PackedScene" uid="uid://34ovja2nt2bk" path="res://scenes/well_template.tscn" id="4_pls23"]
-[ext_resource type="PackedScene" uid="uid://c6sgyp5ewcqge" path="res://scenes/generator_template.tscn" id="5_qj3iy"]
 
 [node name="World" type="Node2D" unique_id=843234056]
 script = ExtResource("1_u82pb")
 metadata/support = 100
 metadata/money = 0
+metadata/max_teams = 0
+metadata/used_teams = 0
 
 [node name="player" type="CharacterBody2D" parent="." unique_id=1351970569]
 process_mode = 3

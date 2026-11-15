@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://bk5nn6fosck12"]
+
+[ext_resource type="Texture2D" uid="uid://dy3xogt0t1ml" path="res://assets/cascadia_cover_image.png" id="1_83j5x"]
+[ext_resource type="Script" uid="uid://cu4bnaqybo1yd" path="res://scenes/button_2.gd" id="2_mg68r"]
+
+[node name="Node2D" type="Node2D" unique_id=2021455057]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=521194895]
+position = Vector2(576, 318)
+scale = Vector2(0.38, 0.38)
+texture = ExtResource("1_83j5x")
+
+[node name="Button" type="Button" parent="." unique_id=1473736538]
+offset_left = 822.0
+offset_top = 427.0
+offset_right = 1064.0
+offset_bottom = 481.0
+theme_override_font_sizes/font_size = 30
+text = "You Win!"
+
+[node name="Button2" type="Button" parent="." unique_id=759753224]
+offset_left = 847.0
+offset_top = 507.0
+offset_right = 1042.0
+offset_bottom = 553.0
+theme_override_font_sizes/font_size = 30
+text = "Play again!"
+script = ExtResource("2_mg68r")
+
+[connection signal="pressed" from="Button2" to="Button2" method="_on_pressed"]

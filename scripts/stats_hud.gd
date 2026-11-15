@@ -59,13 +59,14 @@ func show_preview(homes: int, shortfall: float) -> void:
 func hide_preview() -> void:
 	preview_details.hide()
 
-func show_result(won: bool, connected: int, goal: int) -> void:
+func show_result(won: bool) -> void:
 	build_button.disabled = true
 	if won:
-		result_message.text = "%d more homes have water." % goal
-		retry_button.text = "Play again"
+		result_message.text = "You've fixed the town!"
+		retry_button.text = "Next"
+		owner.has_won = true
 	else:
-		result_message.text = "Support ran out, you connected %d of %d homes." % [connected, goal]
+		result_message.text = "Support ran out, you've failed"
 		retry_button.text = "Try again"
 	result_screen.show()
 	retry_button.grab_focus()

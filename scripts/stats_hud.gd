@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@onready var money_label: Label = $MoneyPanel/Padding/MoneyLabel
+@onready var money_label: Label = $MoneyPanel/Padding/VBoxContainer/MoneyLabel
 @onready var support_bar: ProgressBar = $SupportPanel/Padding/Stats/SupportBar
 @onready var support_value: Label = $SupportPanel/Padding/Stats/SupportValue
 @onready var objective: Label = $BuildPanel/Padding/Details/Objective

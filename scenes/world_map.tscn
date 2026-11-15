@@ -21,7 +21,7 @@ size = Vector2(40.7742, 835.0968)
 [node name="World" type="Node2D" unique_id=843234056]
 script = ExtResource("1_u82pb")
 metadata/support = 100
-metadata/money = 500
+metadata/money = 350
 metadata/max_teams = 3
 metadata/used_teams = 0
 
@@ -57,10 +57,18 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 8
 
-[node name="MoneyLabel" type="Label" parent="HUD/MoneyPanel/Padding" unique_id=1647576176]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/MoneyPanel/Padding" unique_id=562793080]
+layout_mode = 2
+
+[node name="MoneyLabel" type="Label" parent="HUD/MoneyPanel/Padding/VBoxContainer" unique_id=1647576176]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Money: $0"
+
+[node name="IncomeLabel" type="Label" parent="HUD/MoneyPanel/Padding/VBoxContainer" unique_id=1813832902]
+unique_name_in_owner = true
+layout_mode = 2
+text = "+xx$"
 
 [node name="SupportPanel" type="PanelContainer" parent="HUD" unique_id=1764448234]
 anchors_preset = 6
@@ -110,6 +118,11 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "100%"
 horizontal_alignment = 1
+
+[node name="SupportChange" type="Label" parent="HUD/SupportPanel/Padding/Stats" unique_id=1124500912]
+unique_name_in_owner = true
+layout_mode = 2
+text = "-xx%"
 
 [node name="BuildPanel" type="PanelContainer" parent="HUD" unique_id=2000191060]
 anchors_preset = 2

@@ -84,7 +84,8 @@ func day_event() -> void:
 		if (current_house.get_meta("water") == true):
 			bonus_money += 0.25
 			
-	set_meta("money", get_meta("money") + 20 + bonus_money)
+	%IncomeLabel.text = "+$%d" % int(15+bonus_money)
+	set_meta("money", get_meta("money") + 15 + bonus_money)
 	
 	support_calc()
 	
@@ -103,8 +104,16 @@ func support_calc():
 			total_support += 1
 		if (current_house.get_meta("water") == true):
 			total_support += 1
-	var service_support := total_support / maxf(1.0, house_count)
+	var service_support = float(total_support / house_count)
+	var daily_change = service_support-1.5
+	var daily_changeStr = str(round(daily_change*100)/100)
 	set_meta("support", clampf(get_meta("support") - 1.5 + service_support, 0.0, 100.0))
+	
+	print(service_support)
+	print(daily_changeStr)
+	
+	%SupportChange.text = daily_changeStr
+	
 	#print(float(total_support/house_count))
 	#print(total_support)
 	#print(house_count)

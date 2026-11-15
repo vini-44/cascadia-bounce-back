@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/button_1.gd" id="1_7c7m4"]
 [ext_resource type="Script" path="res://scripts/play_button.gd" id="2_7vrkn"]
 [ext_resource type="Script" path="res://scripts/settings_button.gd" id="3_fu7sn"]
-[ext_resource type="Script" uid="uid://83mb0mqmi6of" path="res://scripts/quit_button.gd" id="4_glbon"]
+[ext_resource type="Script" uid="uid://tnais2y7fy6s" path="res://scripts/quit_button.gd" id="4_glbon"]
 [ext_resource type="Script" path="res://scripts/settings_panel.gd" id="4_jix8l"]
 
 [node name="Control" type="Control" unique_id=913363199]

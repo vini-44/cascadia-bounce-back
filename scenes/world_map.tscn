@@ -17,9 +17,8 @@ script = ExtResource("3_pls23")
 
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=1863578224]
 
-[node name="HUD" type="CanvasLayer" parent="." unique_id=365164596 node_paths=PackedStringArray("player")]
+[node name="HUD" type="CanvasLayer" parent="." unique_id=365164596]
 script = ExtResource("3_stats")
-player = NodePath("../player")
 
 [node name="MoneyPanel" type="PanelContainer" parent="HUD" unique_id=1429605165]
 offset_left = 16.0
@@ -88,6 +87,89 @@ layout_mode = 2
 text = "100%"
 horizontal_alignment = 1
 
+[node name="BuildPanel" type="PanelContainer" parent="HUD"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -16.0
+offset_right = 304.0
+offset_bottom = -16.0
+grow_vertical = 0
+
+[node name="Padding" type="MarginContainer" parent="HUD/BuildPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="Details" type="VBoxContainer" parent="HUD/BuildPanel/Padding"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="WaterObjective" type="Label" parent="HUD/BuildPanel/Padding/Details"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Connect 10 more homes to water"
+
+[node name="WaterProgress" type="Label" parent="HUD/BuildPanel/Padding/Details"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "New homes with water: 0 / 10"
+
+[node name="BuildWell" type="Button" parent="HUD/BuildPanel/Padding/Details"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "B: Place a well"
+text = "Place a well, $100"
+
+[node name="PreviewDetails" type="VBoxContainer" parent="HUD/BuildPanel/Padding/Details"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="PreviewCount" type="Label" parent="HUD/BuildPanel/Padding/Details/PreviewDetails"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PreviewHint" type="Label" parent="HUD/BuildPanel/Padding/Details/PreviewDetails"]
+unique_name_in_owner = true
+layout_mode = 2
+autowrap_mode = 3
+
+[node name="ResultScreen" type="CenterContainer" parent="HUD"]
+unique_name_in_owner = true
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResultPanel" type="PanelContainer" parent="HUD/ResultScreen"]
+custom_minimum_size = Vector2(288, 0)
+layout_mode = 2
+
+[node name="Padding" type="MarginContainer" parent="HUD/ResultScreen/ResultPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 16
+
+[node name="Result" type="VBoxContainer" parent="HUD/ResultScreen/ResultPanel/Padding"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="ResultMessage" type="Label" parent="HUD/ResultScreen/ResultPanel/Padding/Result"]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Retry" type="Button" parent="HUD/ResultScreen/ResultPanel/Padding/Result"]
+unique_name_in_owner = true
+layout_mode = 2
+
 [node name="well" parent="." unique_id=2044072898 instance=ExtResource("4_pls23")]
 position = Vector2(444, 187)
 
@@ -99,3 +181,6 @@ position = Vector2(341, -581)
 
 [node name="well3" parent="." unique_id=2041764024 instance=ExtResource("4_pls23")]
 position = Vector2(-364, 354)
+
+[connection signal="pressed" from="HUD/BuildPanel/Padding/Details/BuildWell" to="." method="toggle_placement"]
+[connection signal="pressed" from="HUD/ResultScreen/ResultPanel/Padding/Result/Retry" to="." method="restart_round"]
